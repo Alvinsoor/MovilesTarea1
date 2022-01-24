@@ -145,12 +145,14 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 50,
                   ),
-                  Container(
+                  const FractionallySizedBox(
+                    widthFactor: .9,
                     alignment: Alignment.center,
-                    child: const Text(
-                        "Ex magna ut Lorem aliqua tempor consectetur. Est ex magna et aute eiusmod consequat consectetur pariatur anim. Et officia ullamco ut ullamco sunt anim ut pariatur elit. Eu occaecat qui voluptate in eu tempor ex ullamco non irure exercitation magna minim in. Excepteur do nulla incididunt Lorem ut ullamco magna est elit ut enim esse esse excepteur."),
+                    child: Text(
+                      "Ex magna ut Lorem aliqua tempor consectetur. Est ex magna et aute eiusmod consequat consectetur pariatur anim. Et officia ullamco ut ullamco sunt anim ut pariatur elit. Eu occaecat qui voluptate in eu tempor ex ullamco non irure exercitation magna minim in. Excepteur do nulla incididunt Lorem ut ullamco magna est elit ut enim esse esse excepteur.",
+                    ),
                   )
                 ],
               )),
