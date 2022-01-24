@@ -2,15 +2,30 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   int _count = 0;
+
+  // ignore: prefer_final_fields
+  Color _likeColor = Colors.black;
+
+  Color _mailColor = Colors.black;
+
+  Color _callColor = Colors.black;
+
+  Color _routeColor = Colors.black;
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
-              title: Text('Tarea #1'),
+              title: const Text('Tarea #1'),
             ),
             body: SingleChildScrollView(
               child: Expanded(
@@ -19,18 +34,25 @@ class MyApp extends StatelessWidget {
                   Image.network(
                       "https://cruce.iteso.mx/wp-content/uploads/sites/123/2018/04/Portada-2-e1525031912445.jpg"),
                   ListTile(
-                      title:
-                          Text("El ITESO, Universidad Jesuita de Guadalajara"),
-                      subtitle: Text("San Pedro Tlaquepaque, Jal."),
+                      title: const Text(
+                          "El ITESO, Universidad Jesuita de Guadalajara"),
+                      subtitle: const Text("San Pedro Tlaquepaque, Jal."),
                       trailing: Expanded(
-                        child: Column(children: [
+                        child: Stack(children: [
                           IconButton(
-                            icon: Icon(Icons.thumb_up_sharp),
+                            icon: const Icon(Icons.thumb_up_sharp),
                             onPressed: () {
-                              setState();
+                              setState(() {
+                                _count++;
+                                if (_likeColor == Colors.blueAccent) {
+                                  _likeColor = Colors.black;
+                                } else {
+                                  _likeColor = Colors.blueAccent;
+                                }
+                              });
                             },
                             iconSize: 25,
-                            color: Colors.blueAccent,
+                            color: _likeColor,
                           ),
                           Text("Likes: $_count"),
                         ]),
@@ -42,45 +64,70 @@ class MyApp extends StatelessWidget {
                       children: [
                         Column(children: [
                           IconButton(
+                            color: _mailColor,
                             onPressed: () {
-                              //final snackBar = SnackBar(content: Text("ono"))
+                              setState(() {
+                                if (_mailColor == Colors.blueAccent) {
+                                  _mailColor = Colors.black;
+                                } else {
+                                  _mailColor = Colors.blueAccent;
+                                }
+                              });
                             },
-                            icon: Icon(Icons.mail),
+                            icon: const Icon(Icons.mail),
                           ),
-                          Text("Correo")
+                          const Text("Correo")
                         ]),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Column(children: [
-                          IconButton(onPressed: () {}, icon: Icon(Icons.phone)),
-                          Text("Llamada")
-                        ]),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         Column(children: [
                           IconButton(
-                              onPressed: () {}, icon: Icon(Icons.directions)),
-                          Text("Ruta")
+                            onPressed: () {
+                              setState(() {
+                                if (_callColor == Colors.blueAccent) {
+                                  _callColor = Colors.black;
+                                } else {
+                                  _callColor = Colors.blueAccent;
+                                }
+                              });
+                            },
+                            icon: const Icon(Icons.phone),
+                            color: _callColor,
+                          ),
+                          const Text("Llamada"),
+                        ]),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Column(children: [
+                          IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (_routeColor == Colors.blueAccent) {
+                                    _routeColor = Colors.black;
+                                  } else {
+                                    _routeColor = Colors.blueAccent;
+                                  }
+                                });
+                              },
+                              icon: const Icon(Icons.directions),
+                              color: _routeColor),
+                          const Text("Ruta")
                         ]),
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
                     alignment: Alignment.center,
-                    child: Text(
+                    child: const Text(
                         "Ex magna ut Lorem aliqua tempor consectetur. Est ex magna et aute eiusmod consequat consectetur pariatur anim. Et officia ullamco ut ullamco sunt anim ut pariatur elit. Eu occaecat qui voluptate in eu tempor ex ullamco non irure exercitation magna minim in. Excepteur do nulla incididunt Lorem ut ullamco magna est elit ut enim esse esse excepteur."),
                   )
                 ],
               )),
             )));
-  }
-
-  setState() {
-    _count++;
   }
 }
