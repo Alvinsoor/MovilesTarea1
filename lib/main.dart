@@ -8,7 +8,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int _count = 0;
+  int _count = 9998;
 
   // ignore: prefer_final_fields
   Color _likeColor = Colors.black;
@@ -19,9 +19,12 @@ class _MyAppState extends State<MyApp> {
 
   Color _routeColor = Colors.black;
 
+  final _messengerKey = GlobalKey<ScaffoldMessengerState>();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        scaffoldMessengerKey: _messengerKey,
         home: Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
@@ -43,11 +46,12 @@ class _MyAppState extends State<MyApp> {
                             icon: const Icon(Icons.thumb_up_sharp),
                             onPressed: () {
                               setState(() {
-                                _count++;
                                 if (_likeColor == Colors.blueAccent) {
+                                  _count--;
                                   _likeColor = Colors.black;
                                 } else {
                                   _likeColor = Colors.blueAccent;
+                                  _count++;
                                 }
                               });
                             },
@@ -66,6 +70,13 @@ class _MyAppState extends State<MyApp> {
                           IconButton(
                             color: _mailColor,
                             onPressed: () {
+                              _messengerKey.currentState!.showSnackBar(SnackBar(
+                                content: Text('Correo Electronico'),
+                                action: SnackBarAction(
+                                  label: 'Undo',
+                                  onPressed: () {},
+                                ),
+                              ));
                               setState(() {
                                 if (_mailColor == Colors.blueAccent) {
                                   _mailColor = Colors.black;
@@ -84,6 +95,13 @@ class _MyAppState extends State<MyApp> {
                         Column(children: [
                           IconButton(
                             onPressed: () {
+                              _messengerKey.currentState!.showSnackBar(SnackBar(
+                                content: Text('Numero de Telefono'),
+                                action: SnackBarAction(
+                                  label: 'Undo',
+                                  onPressed: () {},
+                                ),
+                              ));
                               setState(() {
                                 if (_callColor == Colors.blueAccent) {
                                   _callColor = Colors.black;
@@ -103,6 +121,14 @@ class _MyAppState extends State<MyApp> {
                         Column(children: [
                           IconButton(
                               onPressed: () {
+                                _messengerKey.currentState!
+                                    .showSnackBar(SnackBar(
+                                  content: Text('Ojos al volante'),
+                                  action: SnackBarAction(
+                                    label: 'Undo',
+                                    onPressed: () {},
+                                  ),
+                                ));
                                 setState(() {
                                   if (_routeColor == Colors.blueAccent) {
                                     _routeColor = Colors.black;
